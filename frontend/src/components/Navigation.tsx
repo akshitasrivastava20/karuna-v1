@@ -16,7 +16,7 @@ import {
 const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
  
-  { name: 'Diagnosis', href: '/diagnosis', icon: Stethoscope },
+ 
   { name: 'Reports', href: '/reports', icon: FileText },
   { name: 'Medicine', href: '/medicine', icon: Pill },
   { name: 'Students', href: '/students', icon: Users },
