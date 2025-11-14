@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Explicitly set the project root
+  output: 'standalone',
 };
 
 export default nextConfig;
