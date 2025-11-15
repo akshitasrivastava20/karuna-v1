@@ -108,6 +108,39 @@ export default function DiagnosisPage() {
     }
   };
 
+  const handleGetDiagnosisMedicines = async () => {
+    if (!diagnosisResult) {
+      setMedicineError('Please get diagnosis first');
+      return;
+    }
+
+    setMedicineLoading(true);
+    setMedicineError('');
+    
+    try {
+      // Extract medicine names from diagnosis result
+      const medicineNames = diagnosisResult.medications.map(med => med.name);
+      if (medicineNames.length === 0) {
+        setMedicineError('No medicines found in diagnosis');
+        return;
+      }
+      
+      const response = await medicineAPI.searchByPrescription(medicineNames);
+      setMedicineResults(response.data.data || response.data);
+      
+      // Switch to medicine tab to show results
+      setActiveTab('medicine');
+    } catch (error: unknown) {
+      console.error('Get diagnosis medicines error:', error);
+      const errorMessage = error && typeof error === 'object' && 'response' in error 
+        ? (error as { response?: { data?: { error?: string } } }).response?.data?.error || 'Failed to search medicines'
+        : 'An error occurred';
+      setMedicineError(errorMessage);
+    } finally {
+      setMedicineLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -165,13 +198,25 @@ export default function DiagnosisPage() {
                     </div>
                   )}
                   
-                  <Button
-                    onClick={handleDiagnosis}
-                    disabled={diagnosisLoading}
-                    className="w-full sm:w-auto bg-purple-900 hover:bg-purple-800"
-                  >
-                    {diagnosisLoading ? 'Analyzing...' : 'Get Diagnosis'}
-                  </Button>
+                  <div className="flex space-x-2">
+                    <Button
+                      onClick={handleDiagnosis}
+                      disabled={diagnosisLoading}
+                      className="bg-purple-900 hover:bg-purple-800"
+                    >
+                      {diagnosisLoading ? 'Analyzing...' : 'Get Diagnosis'}
+                    </Button>
+                    
+                    <Button
+                      onClick={handleGetDiagnosisMedicines}
+                      disabled={!diagnosisResult || medicineLoading}
+                      variant="outline"
+                      className="border-purple-900 text-purple-900 hover:bg-purple-900 hover:text-white"
+                    >
+                      <Pill className="h-4 w-4 mr-2" />
+                      {medicineLoading ? 'Searching...' : 'Get Medicines'}
+                    </Button>
+                  </div>
                 </div>
               </Card>
 
