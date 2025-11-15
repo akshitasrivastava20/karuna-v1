@@ -324,10 +324,8 @@ ${diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n'
       icon={<Bot className="h-6 w-6" />}
     >
       <ExpandableChatHeader className="flex-col text-center justify-center">
-        <h1 className="text-xl font-semibold">Karuna AI Assistant ✨</h1>
-        <p className="text-sm text-muted-foreground">
-          Your medical AI assistant for health questions and guidance
-        </p>
+        <h1 className="text-xl font-semibold">Karuna AI</h1>
+       
       </ExpandableChatHeader>
 
       <ExpandableChatBody>
