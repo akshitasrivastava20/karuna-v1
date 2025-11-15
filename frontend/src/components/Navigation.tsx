@@ -40,12 +40,12 @@ export default function Navigation() {
           : 'bg-transparent'
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-2 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Stethoscope className="h-6 w-6 text-blue-600" />
-          <span className="text-lg font-semibold text-gray-900">Karuna</span>
-        </Link>
+       <Link href="/" className="flex items-center">
+  <img src="/images/karuna-logo-purple.svg" alt="Karuna" className="h-16 w-auto" />
+</Link>
+
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
@@ -59,7 +59,7 @@ export default function Navigation() {
                 className={cn(
                   'flex items-center space-x-1 text-sm transition-all',
                   isActive
-                    ? 'text-blue-600 underline underline-offset-4'
+                    ? 'text-purple-900 underline underline-offset-4'
                     : 'text-gray-700 hover:text-gray-900'
                 )}
               >
@@ -70,7 +70,7 @@ export default function Navigation() {
           })}
           <Link
             href="/get-started"
-            className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-full text-sm hover:bg-blue-700 transition"
+            className="ml-4 px-4 py-2 bg-purple-800 text-white rounded-full text-sm hover:bg-purple-900 transition"
           >
             Get Started
           </Link>
