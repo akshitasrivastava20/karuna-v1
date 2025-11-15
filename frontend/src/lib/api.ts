@@ -86,6 +86,7 @@ export const reportAPINew = {
 
 export const medicineAPI = {
   search: (query: string) => api.get(`/medicine?q=${query}`),
+  searchByPrescription: (prescription: string[]) => api.post('/medicine', { prescription }),
   getAll: () => api.get('/medicine'),
   getById: (id: string) => api.get(`/medicine/${id}`),
 };

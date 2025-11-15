@@ -27,7 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-50 text-gray-900`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-repeat bg-center text-gray-900`}
+        style={{ 
+          backgroundImage: "url('/images/Gemini_Generated_Image_71076g71076g7107.png')",
+          backgroundSize: "250px 250px"
+        }}
       >
         {children}
         <KarunaExpandableChat />

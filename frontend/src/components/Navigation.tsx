@@ -9,7 +9,7 @@ import { Home, FileText, Pill, Users, BarChart3, Stethoscope } from 'lucide-reac
 const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
   
-  { name: 'Medicine', href: '/medicine', icon: Pill },
+  { name: 'Diagnosis', href: '/diagnosis', icon: Pill },
 
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
 ];
