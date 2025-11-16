@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL for your backend API
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6969/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://karuna-backend-wbeh.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

@@ -2,15 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Home, FileText, Pill, Users, BarChart3, Stethoscope } from 'lucide-react';
+import { Home, FileText, Users, BarChart3, Stethoscope } from 'lucide-react';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
-  
-  { name: 'Diagnosis', href: '/diagnosis', icon: Pill },
-   { name: 'Doctors', href: '/doctors', icon: Pill },
+  { name: 'Diagnosis', href: '/diagnosis', icon: Stethoscope },
+  { name: 'Reports', href: '/reports', icon: FileText },
+  { name: 'Doctors', href: '/doctors', icon: Users },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
 ];
 
@@ -43,7 +44,7 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-2 py-4 flex justify-between items-center">
         {/* Logo */}
        <Link href="/" className="flex items-center">
-  <img src="/images/karuna-logo-purple.svg" alt="Karuna" className="h-16 w-auto" />
+  <Image src="/images/karuna-logo-purple.svg" alt="Karuna" width={64} height={64} className="h-16 w-auto" />
 </Link>
 
 

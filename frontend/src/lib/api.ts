@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL for your backend API
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:6969/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://karuna-backend-wbeh.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -71,8 +71,21 @@ export const diagnosisAPINew = {
     api.post('/diagnosis', data),
 };
 
+export type ReportAnalysisResponse = {
+  diagnosis: string;
+  medications: Array<{
+    name: string;
+    dosage: string;
+    duration: string;
+  }>;
+  prescription: string[];
+  specialist: string;
+  dietary_suggestions: string[];
+  disclaimer: string;
+};
+
 export const reportAPINew = {
-  uploadReport: (file: File): Promise<{ data: DiagnosisResponse }> => {
+  uploadReport: (file: File): Promise<{ data: ReportAnalysisResponse }> => {
     const formData = new FormData();
     formData.append('file', file);
     
