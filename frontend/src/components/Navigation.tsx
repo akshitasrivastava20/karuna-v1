@@ -10,7 +10,7 @@ const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
   
   { name: 'Diagnosis', href: '/diagnosis', icon: Pill },
-
+   { name: 'Doctors', href: '/doctors', icon: Pill },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
 ];
 

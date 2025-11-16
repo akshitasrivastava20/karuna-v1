@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { KarunaExpandableChat } from "@/components/KarunaExpandableChat";
+import Navigation from "@/components/Navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
           backgroundSize: "250px 250px"
         }}
       >
+        <Navigation />
         {children}
         <KarunaExpandableChat />
       </body>

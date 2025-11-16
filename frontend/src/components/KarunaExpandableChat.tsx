@@ -432,6 +432,7 @@ ${diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n'
             <Button 
               type="submit" 
               size="sm" 
+              variant="purple"
               className="ml-auto gap-1.5"
               disabled={!input.trim() || isLoading}
             >

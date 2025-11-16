@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
-import Navigation from '@/components/Navigation';
 import { Search, Stethoscope, Pill, AlertCircle, CheckCircle } from 'lucide-react';
 import { diagnosisAPINew, medicineAPI } from '@/lib/api';
 
@@ -143,8 +142,6 @@ export default function DiagnosisPage() {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
-      
       <div className="container mx-auto px-4 py-8 pt-24">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-3xl font-bold text-center mb-8 text-black">Medical Diagnosis & Medicine Search</h1>
