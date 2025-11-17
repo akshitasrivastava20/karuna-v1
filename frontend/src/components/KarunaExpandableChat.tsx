@@ -182,18 +182,37 @@ export function KarunaExpandableChat() {
       const diagnosis = response.data;
 
       // Format the diagnosis response as a comprehensive message
+      const formatMedication = (med: string | { name?: string; medicine?: string; description?: string; dosage?: string; instructions?: string }) => {
+        if (typeof med === 'string') {
+          return `• ${med}`;
+        }
+        // Handle different object structures
+        const name = med.name || med.medicine || 'Unknown medication';
+        const details = [];
+        
+        if (med.description) details.push(med.description);
+        if (med.dosage) details.push(`Dosage: ${med.dosage}`);
+        if (med.instructions) details.push(`Instructions: ${med.instructions}`);
+        
+        return `• ${name}${details.length > 0 ? ` - ${details.join(', ')}` : ''}`;
+      };
+
       const diagnosisContent = `
-🔍 **Report Analysis**: ${diagnosis.diagnosis}
+🔍 **Report Analysis**: ${diagnosis.diagnosis || 'No diagnosis available'}
 
 💊 **Recommended Medications**:
-${diagnosis.medications.map(med => `• ${med.name}: ${med.description}`).join('\n')}
+${diagnosis.medications && diagnosis.medications.length > 0 
+  ? diagnosis.medications.map(formatMedication).join('\n')
+  : 'No medications recommended'}
 
-👨‍⚕️ **Specialist Consultation**: ${diagnosis.specialist}
+👨‍⚕️ **Specialist Consultation**: ${diagnosis.specialist || 'No specialist recommendation'}
 
 🥗 **Dietary Suggestions**:
-${diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n')}
+${diagnosis.dietary_suggestions && diagnosis.dietary_suggestions.length > 0 
+  ? diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n')
+  : 'No dietary suggestions available'}
 
-⚠️ **Disclaimer**: ${diagnosis.disclaimer}
+⚠️ **Disclaimer**: ${diagnosis.disclaimer || 'This analysis is for informational purposes only and should not replace professional medical advice.'}
       `.trim();
 
       const aiMessage: Message = {
@@ -251,18 +270,37 @@ ${diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n'
       const diagnosis = response.data;
 
       // Format the diagnosis response as a comprehensive message
+      const formatMedication = (med: string | { name?: string; medicine?: string; description?: string; dosage?: string; instructions?: string }) => {
+        if (typeof med === 'string') {
+          return `• ${med}`;
+        }
+        // Handle different object structures
+        const name = med.name || med.medicine || 'Unknown medication';
+        const details = [];
+        
+        if (med.description) details.push(med.description);
+        if (med.dosage) details.push(`Dosage: ${med.dosage}`);
+        if (med.instructions) details.push(`Instructions: ${med.instructions}`);
+        
+        return `• ${name}${details.length > 0 ? ` - ${details.join(', ')}` : ''}`;
+      };
+
       const diagnosisContent = `
-🔍 **Diagnosis**: ${diagnosis.diagnosis}
+🔍 **Diagnosis**: ${diagnosis.diagnosis || 'No diagnosis available'}
 
 💊 **Recommended Medications**:
-${diagnosis.medications.map(med => `• ${med.name}: ${med.description}`).join('\n')}
+${diagnosis.medications && diagnosis.medications.length > 0 
+  ? diagnosis.medications.map(formatMedication).join('\n')
+  : 'No medications recommended'}
 
-👨‍⚕️ **Specialist Consultation**: ${diagnosis.specialist}
+👨‍⚕️ **Specialist Consultation**: ${diagnosis.specialist || 'No specialist recommendation'}
 
 🥗 **Dietary Suggestions**:
-${diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n')}
+${diagnosis.dietary_suggestions && diagnosis.dietary_suggestions.length > 0 
+  ? diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n')
+  : 'No dietary suggestions available'}
 
-⚠️ **Disclaimer**: ${diagnosis.disclaimer}
+⚠️ **Disclaimer**: ${diagnosis.disclaimer || 'This analysis is for informational purposes only and should not replace professional medical advice.'}
       `.trim();
 
       const aiMessage: Message = {
@@ -322,14 +360,14 @@ ${diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n'
       size="lg"
       position="bottom-right"
       icon={<Bot className="h-6 w-6 text-white" />}
-      className="[&>button]:bg-purple-900 [&>button]:hover:bg-purple-800 [&>button]:border-purple-900"
+      className="[&>button]:bg-purple-900 [&>button]:hover:bg-purple-800 [&>button]:border-amber-800 border-amber-800"
     >
-      <ExpandableChatHeader className="flex-col text-center justify-center">
+      <ExpandableChatHeader className="flex-col text-center justify-center border-b border-amber-800">
         <h1 className="text-xl font-semibold">Karuna AI</h1>
        
       </ExpandableChatHeader>
 
-      <ExpandableChatBody>
+      <ExpandableChatBody className="border-l border-r border-amber-800">
         <ChatMessageList smooth>
           {messages.map((message) => (
             <ChatBubble
@@ -337,11 +375,11 @@ ${diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n'
               variant={message.sender === "user" ? "sent" : "received"}
             >
               <ChatBubbleAvatar
-                className="h-8 w-8 shrink-0"
+                className="h-8 w-8 shrink-0 rounded-full object-cover"
                 src={
                   message.sender === "user"
-                    ? "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&q=80&crop=faces&fit=crop"
-                    : "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=64&h=64&q=80&crop=faces&fit=crop"
+                    ? "/IMG-20251114-WA0003.jpg"
+                    : "/images/karuna-logo-purple.svg"
                 }
                 fallback={message.sender === "user" ? "YU" : "AI"}
               />
@@ -360,8 +398,8 @@ ${diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n'
           {isLoading && (
             <ChatBubble variant="received">
               <ChatBubbleAvatar
-                className="h-8 w-8 shrink-0"
-                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=64&h=64&q=80&crop=faces&fit=crop"
+                className="h-8 w-8 shrink-0 rounded-full object-cover"
+                src="/images/karuna-logo-purple.svg"
                 fallback="AI"
               />
               <ChatBubbleMessage isLoading />
@@ -370,10 +408,10 @@ ${diagnosis.dietary_suggestions.map(suggestion => `• ${suggestion}`).join('\n'
         </ChatMessageList>
       </ExpandableChatBody>
 
-      <ExpandableChatFooter>
+      <ExpandableChatFooter className="border-t border-amber-800">
         <form
           onSubmit={handleSubmit}
-          className="relative rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring p-1"
+          className="relative rounded-lg border border-amber-800 bg-background focus-within:ring-1 focus-within:ring-amber-800 p-1"
         >
           {/* Hidden file input */}
           <input

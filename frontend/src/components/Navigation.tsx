@@ -70,10 +70,10 @@ export default function Navigation() {
             );
           })}
           <Link
-            href="/get-started"
+            href="https://nextjs-videocallingapp-zegocloud-zeta.vercel.app/"
             className="ml-4 px-4 py-2 bg-purple-800 text-white rounded-full text-sm hover:bg-purple-900 transition"
           >
-            Get Started
+            CONSULTATION
           </Link>
         </div>
 
