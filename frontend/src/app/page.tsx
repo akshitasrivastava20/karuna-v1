@@ -3,6 +3,7 @@
 import { SplineSceneBasic } from '@/components/SplineScene';
 import { CometCard } from '@/components/ui/comet-card';
 import { MorphingText } from "@/components/ui/morphing-text";
+import DefaultDemo from '@/components/Zoom';
 import Image from 'next/image';
 
 const texts = [
@@ -44,7 +45,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+      <div>
+        <DefaultDemo />
+      </div>
+      
     </div>
   );
 }
