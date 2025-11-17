@@ -201,9 +201,7 @@ export function KarunaExpandableChat() {
 🔍 **Report Analysis**: ${diagnosis.diagnosis || 'No diagnosis available'}
 
 💊 **Recommended Medications**:
-${diagnosis.medications && diagnosis.medications.length > 0 
-  ? diagnosis.medications.map(formatMedication).join('\n')
-  : 'No medications recommended'}
+${diagnosis.medications.map(med => `• ${med.name}: ${med.dosage} for ${med.duration}`).join('\n')}
 
 👨‍⚕️ **Specialist Consultation**: ${diagnosis.specialist || 'No specialist recommendation'}
 
