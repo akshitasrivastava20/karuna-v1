@@ -190,7 +190,7 @@ export function KarunaExpandableChat() {
         const name = med.name || med.medicine || 'Unknown medication';
         const details = [];
         
-        if (med.description) details.push(med.description);
+        // if (med.description) details.push(med.description);
         if (med.dosage) details.push(`Dosage: ${med.dosage}`);
         if (med.instructions) details.push(`Instructions: ${med.instructions}`);
         
@@ -201,7 +201,9 @@ export function KarunaExpandableChat() {
 🔍 **Report Analysis**: ${diagnosis.diagnosis || 'No diagnosis available'}
 
 💊 **Recommended Medications**:
-${diagnosis.medications.map(med => `• ${med.name}: ${med.dosage} for ${med.duration}`).join('\n')}
+${diagnosis.medications && diagnosis.medications.length > 0 
+  ? diagnosis.medications.map(formatMedication).join('\n')
+  : 'No medications recommended'}
 
 👨‍⚕️ **Specialist Consultation**: ${diagnosis.specialist || 'No specialist recommendation'}
 
@@ -276,7 +278,7 @@ ${diagnosis.dietary_suggestions && diagnosis.dietary_suggestions.length > 0
         const name = med.name || med.medicine || 'Unknown medication';
         const details = [];
         
-        if (med.description) details.push(med.description);
+        // if (med.description) details.push(med.description);
         if (med.dosage) details.push(`Dosage: ${med.dosage}`);
         if (med.instructions) details.push(`Instructions: ${med.instructions}`);
         
